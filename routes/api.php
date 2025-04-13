@@ -9,16 +9,16 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\PasswordController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\InstructorController;
-
+use App\Http\Controllers\Api\ServicesController;
 
 // register
-Route::post("/register", [RegisterController::class ,'register']);
+Route::post("/register", [RegisterController::class, 'register']);
 
 // verify
 Route::post('/verify', [RegisterController::class, 'verify']);
 Route::post('/otp', [RegisterController::class, 'otp']);
 //login
-Route::post("/login", [LoginController::class ,'login']);
+Route::post("/login", [LoginController::class, 'login']);
 //forget-password
 Route::post('/forget-password', [PasswordController::class, 'forgetPassword']);
 //confirmationOtp
@@ -29,6 +29,8 @@ Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
 Route::get('/stages', [StageController::class, 'index']);
 Route::get('/grades', [GradeController::class, 'index']);
 
+Route::get('/services', [ServicesController::class, 'index']);
+Route::post('/services', [ServicesController::class, 'index']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // user
@@ -42,7 +44,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/instructor/{id}', [InstructorController::class, 'show']);
     Route::get('/most-instructors', [InstructorController::class, 'MostInstructors']);
     Route::get('/our-instructors', [InstructorController::class, 'OurInstructors']);
-
-
 });
-
